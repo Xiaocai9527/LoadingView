@@ -28,7 +28,7 @@ public class LoadingDialog
     {
         View view = LayoutInflater.from(context).inflate(R.layout.loading_dialog_view, null);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.dialog_view);
-        layout.setMinimumWidth(DimenUtils.dpToPxInt(120));
+        layout.setMinimumWidth(DimenUtils.dpToPxInt(100));
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.lv_circularring);
         loadView = (GraduallyTextView) view.findViewById(R.id.loading_text);
         loadView.setText(msg);

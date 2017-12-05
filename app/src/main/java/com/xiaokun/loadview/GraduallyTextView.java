@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 
 /**
  * 借鉴http://www.jianshu.com/p/f8a9cfb729f9  自己加了一点注释便于理解
+ * 博客有的东西有点问题
  *
  * @author xiaokun
  * @date 2017/12/5
