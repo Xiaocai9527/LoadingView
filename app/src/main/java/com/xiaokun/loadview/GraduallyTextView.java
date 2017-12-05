@@ -85,6 +85,16 @@ public class GraduallyTextView extends AppCompatEditText
                 });
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mPaint.setColor(getCurrentTextColor());
+        mPaint.setTextSize(getTextSize());
+        float width = mPaint.measureText(text.toString());
+        setWidth((int) width);
+    }
+
     //设置开始读取的方法
     public void startLoading()
     {

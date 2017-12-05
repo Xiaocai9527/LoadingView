@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.xiaokun.loadview.util.DimenUtils;
+
 /**
  * @author xiaokun
  * @date 2017/12/5
@@ -25,6 +27,7 @@ public class LoadingDialog
     {
         View view = LayoutInflater.from(context).inflate(R.layout.loading_dialog_view, null);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.dialog_view);
+        layout.setMinimumWidth(DimenUtils.dpToPxInt(120));
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.lv_circularring);
         loadView = (GraduallyTextView) view.findViewById(R.id.loading_text);
         loadView.setText(msg);
