@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/dialog_view"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/dialog_bg"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="15dp">
+
+    <ProgressBar
+        android:id="@+id/lv_circularring"
+        style="?android:attr/progressBarStyleSmallTitle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:indeterminateTint="#7f7f7f"
+        android:indeterminateTintMode="src_atop"
+        android:padding="10dp"/>
+
+    <com.xiaokun.loadview.GraduallyTextView
+        android:id="@+id/loading_text"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:textColor="#6D737F"
+        android:textSize="15sp"/>
+
+</LinearLayout>
