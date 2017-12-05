@@ -13,7 +13,7 @@
         style="?android:attr/progressBarStyleSmallTitle"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:indeterminateTint="#7f7f7f"
+        android:indeterminateTint="#555555"
         android:indeterminateTintMode="src_atop"
         android:padding="10dp"/>
 
@@ -21,7 +21,8 @@
         android:id="@+id/loading_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#6D737F"
+        android:layout_marginTop="5dp"
+        android:textColor="#555555"
         android:textSize="15sp"/>
 
 </LinearLayout>
