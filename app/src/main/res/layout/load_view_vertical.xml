@@ -5,6 +5,7 @@
               android:layout_height="match_parent"
               android:background="@drawable/dialog_bg"
               android:gravity="center"
+              android:minWidth="100dp"
               android:orientation="vertical"
               android:padding="15dp">
 
@@ -17,11 +18,10 @@
         android:indeterminateTintMode="src_atop"
         android:padding="10dp"/>
 
-    <com.xiaokun.loadview.dialog_tip.GraduallyTextView
-        android:id="@+id/loading_text"
+    <TextView
+        android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:textColor="#7fffffff"
         android:textSize="15sp"/>
 

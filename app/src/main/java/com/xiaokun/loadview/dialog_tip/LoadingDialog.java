@@ -1,4 +1,4 @@
-package com.xiaokun.loadview;
+package com.xiaokun.loadview.dialog_tip;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.xiaokun.loadview.R;
 import com.xiaokun.loadview.util.DimenUtils;
 
 /**

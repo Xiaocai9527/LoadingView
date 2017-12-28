@@ -1,4 +1,4 @@
-package com.xiaokun.loadview;
+package com.xiaokun.loadview.dialog_tip;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

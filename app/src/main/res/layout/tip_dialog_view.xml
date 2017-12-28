@@ -3,10 +3,17 @@
               android:id="@+id/dialog_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_marginLeft="16dp"
+              android:layout_marginRight="16dp"
               android:background="@drawable/dialog_bg"
               android:gravity="center"
+              android:minHeight="56dp"
+              android:minWidth="120dp"
               android:orientation="vertical"
-              android:padding="15dp">
+              android:paddingBottom="12dp"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:paddingTop="12dp">
 
     <ProgressBar
         android:id="@+id/lv_circularring"
@@ -22,7 +29,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="#7fffffff"
+        android:textColor="#ffffff"
+        android:textSize="15sp"/>
+
+    <ImageView
+        android:id="@+id/tip_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tip_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="#ffffff"
         android:textSize="15sp"/>
 
 </LinearLayout>

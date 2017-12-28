@@ -54,6 +54,11 @@ public class AppUtils
         return mContext;
     }
 
+    public static Handler getHandler()
+    {
+        return sHandler;
+    }
+
     public static AssetManager getAssets()
     {
         return mContext.getAssets();
