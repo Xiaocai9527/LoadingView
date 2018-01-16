@@ -70,7 +70,7 @@ public class ToastTipActivity extends AppCompatActivity implements View.OnClickL
                 ToastTipUtil.showTip(SEND_SUCCESS, 1500, ToastTipUtil.ICON_TYPE_SUCCESS);
                 break;
             case R.id.btn4:
-
+                mBtn4.setText("click");
                 break;
             default:
 

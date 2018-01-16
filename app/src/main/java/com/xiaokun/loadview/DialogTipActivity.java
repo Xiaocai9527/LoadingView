@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.xiaokun.loadview.dialog_tip.TipLoadDialog;
 
@@ -68,12 +69,14 @@ public class DialogTipActivity extends AppCompatActivity
             }
         });
 
-        findViewById(R.id.toast_tip).setOnClickListener(new View.OnClickListener()
+        final Button toastTip = (Button) findViewById(R.id.toast_tip);
+        toastTip.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
 //                TipViewUtil.showView("加载中...", 6000, TipViewUtil.ICON_TYPE_LOADING);
+                toastTip.setText("click");
             }
         });
     }
