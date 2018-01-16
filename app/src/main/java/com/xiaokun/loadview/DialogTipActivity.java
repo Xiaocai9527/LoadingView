@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.xiaokun.loadview.dialog_tip.TipLoadDialog;
-import com.xiaokun.loadview.util.AppUtils;
 
 /**
  * <pre>
@@ -27,14 +26,14 @@ public class DialogTipActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tipDialogOperation(this, "玩命加载中...", TipLoadDialog.ICON_TYPE_LOADING);
+        showDialog(this, "玩命加载中...", TipLoadDialog.ICON_TYPE_LOADING);
 
         findViewById(R.id.loading).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                tipLoadDialog.show();
+                showDialog(DialogTipActivity.this, "玩命加载中...", TipLoadDialog.ICON_TYPE_LOADING);
             }
         });
 
@@ -47,9 +46,7 @@ public class DialogTipActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                tipLoadDialog.setMsg(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS);
-                tipLoadDialog.show();
-                dismissDialogDelay(tipLoadDialog);
+                showDialog(DialogTipActivity.this, sucTip, TipLoadDialog.ICON_TYPE_SUCCESS);
             }
         });
 
@@ -58,9 +55,7 @@ public class DialogTipActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                tipLoadDialog.setMsg(failTip, TipLoadDialog.ICON_TYPE_FAIL);
-                tipLoadDialog.show();
-                dismissDialogDelay(tipLoadDialog);
+                showDialog(DialogTipActivity.this, failTip, TipLoadDialog.ICON_TYPE_FAIL);
             }
         });
 
@@ -69,9 +64,7 @@ public class DialogTipActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                tipLoadDialog.setMsg(infoTip, TipLoadDialog.ICON_TYPE_INFO);
-                tipLoadDialog.show();
-                dismissDialogDelay(tipLoadDialog);
+                showDialog(DialogTipActivity.this, infoTip, TipLoadDialog.ICON_TYPE_INFO);
             }
         });
 
@@ -85,33 +78,17 @@ public class DialogTipActivity extends AppCompatActivity
         });
     }
 
-
-    /**
-     * 基类创建dialog
-     *
-     * @param context
-     * @param msg
-     * @param type
-     * @return
-     */
-    private TipLoadDialog createTipDialog(Context context, String msg, int type)
-    {
-        tipLoadDialog = new TipLoadDialog(context, msg, type);
-        return tipLoadDialog;
-    }
-
     /**
      * 配置，操作dialog
      *
      * @param type
      * @param msg
      */
-    public void tipDialogOperation(Context context, String msg, int type)
+    public void showDialog(Context context, String msg, int type)
     {
         if (tipLoadDialog == null)
         {
-            //需要调用createTipDialog方法
-            createTipDialog(context, msg, type);
+            tipLoadDialog = new TipLoadDialog(context, msg, type);
         }
         if (tipLoadDialog.isShowing())
         {
@@ -119,38 +96,5 @@ public class DialogTipActivity extends AppCompatActivity
         }
         tipLoadDialog.setMsg(msg, type);
         tipLoadDialog.show();
-        if (type != TipLoadDialog.ICON_TYPE_LOADING)
-        {
-            dismissDialogDelay(tipLoadDialog);
-        }
     }
-
-    /**
-     * 隐藏dialog 固定1s
-     *
-     * @param dialog
-     */
-    public void dismissDialogDelay(final TipLoadDialog dialog)
-    {
-        AppUtils.runOnUIDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                dialog.dismiss();
-            }
-        }, 1000);
-    }
-
-    /**
-     * 取消dialog
-     */
-    public void dismissDialog()
-    {
-        if (tipLoadDialog != null && tipLoadDialog.isShowing())
-        {
-            tipLoadDialog.dismiss();
-        }
-    }
-
 }

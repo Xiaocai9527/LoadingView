@@ -2,6 +2,8 @@ package com.xiaokun.loadview.dialog_tip;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,16 +42,21 @@ public class TipLoadDialog
      */
     public static final int ICON_TYPE_INFO = 4;
 
+    private static Handler sHandler = new Handler(Looper.getMainLooper());
     private Dialog dialog;
     private final GraduallyTextView loadView;
     private final ImageView img;
     private final TextView msg;
     private final ProgressBar progressBar;
     private Context mContext;
+    private int currentType;
+    private int dismissTime = 1000;
+
 
     public TipLoadDialog(Context context, String info, int type)
     {
         this.mContext = context;
+        this.currentType = type;
         View view = LayoutInflater.from(context).inflate(R.layout.tip_dialog_view, null);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.dialog_view);
         img = view.findViewById(R.id.tip_img);
@@ -101,6 +108,7 @@ public class TipLoadDialog
      */
     public void setMsg(String info, int type)
     {
+        this.currentType = type;
         msg.setText(info);
         loadView.setText(info);
         if (type == ICON_TYPE_SUCCESS)
@@ -164,7 +172,7 @@ public class TipLoadDialog
     }
 
     /**
-     * 显示
+     * 显示,默认1s延迟后消失
      */
     public void show()
     {
@@ -172,6 +180,44 @@ public class TipLoadDialog
         if (loadView.getVisibility() == View.VISIBLE)
         {
             loadView.startLoading();
+        }
+        //移除所有的message和callback,
+        // 防止返回键dismiss后,callback没移除
+        sHandler.removeCallbacksAndMessages(null);
+        if (this.currentType != ICON_TYPE_LOADING)
+        {
+            sHandler.postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    dismiss();
+                }
+            }, dismissTime);
+        }
+    }
+
+    /**
+     * 显示,自定义时间
+     */
+    public void show(int duration)
+    {
+        this.dismissTime = duration;
+        dialog.show();
+        if (loadView.getVisibility() == View.VISIBLE)
+        {
+            loadView.startLoading();
+        }
+        if (this.currentType != ICON_TYPE_LOADING)
+        {
+            sHandler.postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    dismiss();
+                }
+            }, dismissTime);
         }
     }
 
