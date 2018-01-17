@@ -2,7 +2,8 @@ package com.xiaokun.loadview;
 
 import android.app.Application;
 
-import com.xiaokun.loadview.util.AppUtils;
+import com.xiaokun.dialogtiplib.util.AppUtils;
+
 
 /**
  * @author xiaokun

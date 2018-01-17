@@ -1,13 +1,15 @@
 package com.xiaokun.loadview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.xiaokun.loadview.dialog_tip.TipLoadDialog;
+import com.xiaokun.dialogtiplib.dialog_tip.TipLoadDialog;
+
 
 /**
  * <pre>
@@ -18,67 +20,152 @@ import com.xiaokun.loadview.dialog_tip.TipLoadDialog;
  * </pre>
  */
 
-public class DialogTipActivity extends AppCompatActivity
+public class DialogTipActivity extends AppCompatActivity implements View.OnClickListener
 {
+    public static final String LOADING_玩命 = "玩命加载中...";
+    private final String sucTip = "发送成功";
+    private final String failTip = "发送失败";
+    private final String infoTip = "字数太多就分段显示，保证textview的宽度";
+
+    private Context mContext;
     public TipLoadDialog tipLoadDialog;
+    private Button mLoading;
+    private Button mSuccessTip;
+    private Button mFailTip;
+    private Button mInfoTip;
+    private Button mToastTip;
+    private Button mThemeTip;
+    private Button mCornerTip;
+    private Button mIconTip;
+    private Button mBgTip;
+    private Button mMsgColorTip;
+    private Button mLvColorTip;
+    private Button mLvTimeTip;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        showDialog(this, "玩命加载中...", TipLoadDialog.ICON_TYPE_LOADING);
+        mContext = this;
+        tipLoadDialog = new TipLoadDialog(this);
+        initView();
+        initListener();
+    }
 
-        findViewById(R.id.loading).setOnClickListener(new View.OnClickListener()
+    private void initView()
+    {
+        mLoading = (Button) findViewById(R.id.loading);
+        mSuccessTip = (Button) findViewById(R.id.success_tip);
+        mFailTip = (Button) findViewById(R.id.fail_tip);
+        mInfoTip = (Button) findViewById(R.id.info_tip);
+        mToastTip = (Button) findViewById(R.id.toast_tip);
+        mThemeTip = (Button) findViewById(R.id.theme_tip);
+        mCornerTip = (Button) findViewById(R.id.corner_tip);
+        mIconTip = (Button) findViewById(R.id.icon_tip);
+        mBgTip = (Button) findViewById(R.id.bg_tip);
+        mMsgColorTip = (Button) findViewById(R.id.msg_color_tip);
+        mLvColorTip = (Button) findViewById(R.id.lv_color_tip);
+        mLvTimeTip = (Button) findViewById(R.id.lv_time_tip);
+    }
+
+    private void initListener()
+    {
+        mLoading.setOnClickListener(this);
+        mSuccessTip.setOnClickListener(this);
+        mFailTip.setOnClickListener(this);
+        mInfoTip.setOnClickListener(this);
+        mToastTip.setOnClickListener(this);
+        mThemeTip.setOnClickListener(this);
+        mCornerTip.setOnClickListener(this);
+        mIconTip.setOnClickListener(this);
+        mBgTip.setOnClickListener(this);
+        mMsgColorTip.setOnClickListener(this);
+        mLvColorTip.setOnClickListener(this);
+        mLvTimeTip.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        switch (view.getId())
         {
-            @Override
-            public void onClick(View view)
-            {
-                showDialog(DialogTipActivity.this, "玩命加载中...", TipLoadDialog.ICON_TYPE_LOADING);
-            }
-        });
+            case R.id.loading:
+                //默认是无阴影主题
+                tipLoadDialog.setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING).show();
+                break;
+            case R.id.success_tip:
+                //设置无阴影主题
+                tipLoadDialog.setNoShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS).show();
+                break;
+            case R.id.fail_tip:
+                //设置无阴影主题
+                tipLoadDialog.setNoShadowTheme().setMsgAndType(failTip, TipLoadDialog.ICON_TYPE_FAIL).show();
+                break;
+            case R.id.info_tip:
+                //设置无阴影主题
+                tipLoadDialog.setNoShadowTheme().setMsgAndType(infoTip, TipLoadDialog.ICON_TYPE_INFO).show();
+                break;
+            case R.id.toast_tip:
+                //设置提示框阴影主题
+                tipLoadDialog.setShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS).show();
+                break;
+            case R.id.theme_tip:
+                //设置加载框阴影主题
+                tipLoadDialog.setShadowTheme().setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING).show();
+                break;
+            case R.id.corner_tip:
+                //设置圆角
+                tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_corner)
+                        .setNoShadowTheme()
+                        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+                        .show();
+                break;
+            case R.id.icon_tip:
+                //设置除了Loading之外的tip图标
+                tipLoadDialog.setSuccessIcon(R.mipmap.custom_tip)
+                        .setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS)
+                        .show();
+                break;
+            case R.id.bg_tip:
+                //设置背景颜色
+                tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_color)
+                        .setNoShadowTheme()
+                        .setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS)
+                        .show();
+                break;
+            case R.id.msg_color_tip:
+                //设置提示信息的text的颜色和大小
+                tipLoadDialog.setNoShadowTheme()
+                        .setMsgColor(Color.BLUE)
+                        .setMsgSize(20)
+                        .setMsgAndType(failTip, TipLoadDialog.ICON_TYPE_FAIL)
+                        .show();
+                break;
+            case R.id.lv_color_tip:
+                //设置加载框文字的颜色和大小 以及progressbar的颜色
+                tipLoadDialog.setNoShadowTheme()
+                        .setProgressbarColor(Color.RED)
+                        .setLoadingTextColor(Color.RED)
+                        .setLoadingTextSize(20)
+                        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+                        .show();
+                break;
+            case R.id.lv_time_tip:
+                //设置loadingText一次动画的时间
+                tipLoadDialog.setNoShadowTheme()
+                        .setProgressbarColor(Color.WHITE)
+                        .setLoadingTextColor(Color.WHITE)
+                        .setLoadingTextSize(15)
+                        .setLoadingTime(10000)
+                        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+                        .show();
+                break;
+            default:
 
-        final String sucTip = "发送成功";
-        final String failTip = "发送失败";
-        final String infoTip = "请勿重复操作";
-
-        findViewById(R.id.success_tip).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                showDialog(DialogTipActivity.this, sucTip, TipLoadDialog.ICON_TYPE_SUCCESS);
-            }
-        });
-
-        findViewById(R.id.fail_tip).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                showDialog(DialogTipActivity.this, failTip, TipLoadDialog.ICON_TYPE_FAIL);
-            }
-        });
-
-        findViewById(R.id.info_tip).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                showDialog(DialogTipActivity.this, infoTip, TipLoadDialog.ICON_TYPE_INFO);
-            }
-        });
-
-        final Button toastTip = (Button) findViewById(R.id.toast_tip);
-        toastTip.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-//                TipViewUtil.showView("加载中...", 6000, TipViewUtil.ICON_TYPE_LOADING);
-                toastTip.setText("click");
-            }
-        });
+                break;
+        }
     }
 
     /**
@@ -97,7 +184,6 @@ public class DialogTipActivity extends AppCompatActivity
         {
             tipLoadDialog.dismiss();
         }
-        tipLoadDialog.setMsg(msg, type);
-        tipLoadDialog.show();
+        tipLoadDialog.setMsgAndType(msg, type).show();
     }
 }

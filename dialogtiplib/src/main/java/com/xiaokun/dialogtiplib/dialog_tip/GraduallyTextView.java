@@ -1,4 +1,4 @@
-package com.xiaokun.loadview.dialog_tip;
+package com.xiaokun.dialogtiplib.dialog_tip;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 
+import com.xiaokun.dialogtiplib.util.DimenUtils;
+
+
 /**
- * 借鉴http://www.jianshu.com/p/f8a9cfb729f9  自己加了一点注释便于理解
- * 博客有的东西有点问题
+ * 借鉴http://www.jianshu.com/p/f8a9cfb729f9
+ * 并加以扩展
  *
  * @author xiaokun
  * @date 2017/12/5
@@ -30,7 +33,6 @@ public class GraduallyTextView extends AppCompatEditText
     private Paint mPaint;
     private int textLength;//设置文本长度
     private boolean isStop = true;
-//    private float scaleX;//设置缩放比例
     /**
      * 总时长
      */
@@ -90,18 +92,18 @@ public class GraduallyTextView extends AppCompatEditText
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mPaint.setTextSize(getTextSize());
         float width = mPaint.measureText(text.toString());
         float fontSpacing = mPaint.getFontSpacing();
         Log.e("GraduallyTextView", "onMeasure(GraduallyTextView.java:99)" + fontSpacing);
-        setWidth((int) width);
-        setHeight((int) fontSpacing);
+        setMeasuredDimension((int) width, (int) fontSpacing);
     }
 
     //设置开始读取的方法
     public void startLoading()
     {
+        init();
         if (!isStop)
         {
             return;
@@ -115,12 +117,13 @@ public class GraduallyTextView extends AppCompatEditText
         isStop = false;
         text = getText();
 
-        //y轴基线下移2倍行距
         mPaint.setTextSize(getTextSize());
-        startY = (int) (2 * mPaint.getFontSpacing());
-        Log.e("GraduallyTextView", "startLoading(GraduallyTextView.java:125)" + startY);
         mPaint.setColor(getCurrentTextColor());
-        mPaint.setTextSize(getTextSize());
+        int height = (int) mPaint.getFontSpacing();
+        //计算startY的值,应该是dialog中心点需要下移的值
+        //计算方法startY = (progressbarHeight +marginTop+loadviewHeight)/2
+        startY = (int) (height + DimenUtils.dpToPx(60)) / 2;
+        Log.e("GraduallyTextView", "run(GraduallyTextView.java:132)" + startY);
         setMinWidth(getWidth());
         setText("");//清空
         setHint("");//清空
@@ -189,15 +192,15 @@ public class GraduallyTextView extends AppCompatEditText
             }
             //设置即将出现那个字的透明度
             mPaint.setAlpha((int) (255 * ((progress % sigleDuration) / sigleDuration)));
-            //最后一个显示出来的字的position
-            int lastOne = (int) (progress / sigleDuration);
+            //下一个显示出来的字的position
+            int nextOne = (int) (progress / sigleDuration);
             //如果position小于textLength
-            if (lastOne < textLength)
+            if (nextOne < textLength)
             {
                 //即将显示那一个字的透明度
                 //measureText测量出text的宽度
-                canvas.drawText(String.valueOf(text.charAt(lastOne)), 0, 1,
-                        getPaint().measureText(text.subSequence(0, lastOne).toString()), startY, mPaint);
+                canvas.drawText(String.valueOf(text.charAt(nextOne)), 0, 1,
+                        getPaint().measureText(text.subSequence(0, nextOne).toString()), startY, mPaint);
             }
         }
     }

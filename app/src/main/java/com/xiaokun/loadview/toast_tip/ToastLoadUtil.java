@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xiaokun.dialogtiplib.util.AppUtils;
 import com.xiaokun.loadview.R;
-import com.xiaokun.loadview.util.AppUtils;
 
 import static java.lang.Integer.MAX_VALUE;
 

@@ -1,9 +1,164 @@
 # LoadingView
-各种弹框。
+耗时加载框和提示框。
 
-**gif：**
+### **图片展示：**
 
-![](screenshots/loadingview.gif)
+![](screenshots/1.png)
+
+
+
+### **展示1：耗时加载框**
+
+
+
+![](screenshots/load.gif)
+
+**代码：**
+
+```
+tipLoadDialog = new TipLoadDialog(this);
+//默认是无阴影主题
+tipLoadDialog.setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING).show();
+```
+
+
+
+### **展示2：tip提示框 1s后自动消失**
+
+![](screenshots/tip.gif)
+
+
+
+**代码：**
+
+```
+//设置无阴影主题
+tipLoadDialog.setNoShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS).show();
+```
+
+
+
+### 展示3：阴影主题
+
+![](screenshots/shadow.gif)
+
+
+
+**代码:**
+
+```
+//设置提示框阴影主题
+tipLoadDialog.setShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS).show();
+```
+
+
+
+### 展示4：设置圆角
+
+![](screenshots/corner.gif)
+
+
+
+**代码：**
+
+```
+//设置圆角
+tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_corner)
+        .setNoShadowTheme()
+        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+        .show();
+```
+
+
+
+### 展示5：设置icon
+
+![](screenshots/icon.gif)
+
+**代码：**
+
+```
+//设置除了Loading之外的tip图标
+tipLoadDialog.setSuccessIcon(R.mipmap.custom_tip)
+        .setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS)
+        .show();
+```
+
+
+
+### 展示6：设置背景颜色
+
+![](screenshots/new_bg_color.gif)
+
+**代码：**
+
+```
+//设置背景颜色
+tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_color)
+        .setNoShadowTheme()
+        .setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUCCESS)
+        .show();
+```
+
+
+
+### 展示7：设置提示文字颜色和大小
+
+![](screenshots/msg_color.gif)
+
+
+
+**代码：**
+
+```
+//设置提示信息的text的颜色和大小
+tipLoadDialog.setNoShadowTheme()
+        .setMsgColor(Color.BLUE)
+        .setMsgSize(20)
+        .setMsgAndType(failTip, TipLoadDialog.ICON_TYPE_FAIL)
+        .show();
+```
+
+
+
+### 展示8：设置加载框文字颜色和大小，以及progressbar颜色
+
+![](screenshots/load_tv_color.gif)
+
+
+
+**代码：**
+
+```
+//设置加载框文字的颜色和大小 以及progressbar的颜色
+tipLoadDialog.setNoShadowTheme()
+        .setProgressbarColor(Color.RED)
+        .setLoadingTextColor(Color.RED)
+        .setLoadingTextSize(20)
+        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+        .show();
+```
+
+
+
+### 展示9：设置加载一次文字动画时间
+
+![](screenshots/load_time.gif)
+
+
+
+**代码：**
+
+```
+//设置loadingText一次动画的时间
+tipLoadDialog.setNoShadowTheme()
+        .setProgressbarColor(Color.WHITE)
+        .setLoadingTextColor(Color.WHITE)
+        .setLoadingTextSize(15)
+        .setLoadingTime(10000)
+        .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+        .show();
+```
 
 
 
@@ -37,21 +192,5 @@ duration时间问题。因为toast时间系统设置为固定的2秒和3.5秒。
 
 **解决方案：主要是利用了CountDownTimer类。Android自带的倒计时控件。**
 
-
-
-##### **小技巧**：
-
-* progressbar 更改颜色在xml中添加两句代码
-
-```
-android:indeterminateTint="#7f7f7f"
-android:indeterminateTintMode="src_atop"
-```
-
-* dialog自定义contentView。LoadingDialog类是Dialog的包装类。
-
-* 自定义GraduallyTextView实现加载文字跟着high起来的幻觉。借鉴的http://www.jianshu.com/p/f8a9cfb729f9
-
-  主要是利用了drawText和透明度这两个技术点。
 
 

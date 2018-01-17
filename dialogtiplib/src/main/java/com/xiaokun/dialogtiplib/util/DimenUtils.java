@@ -1,4 +1,4 @@
-package com.xiaokun.loadview.util;
+package com.xiaokun.dialogtiplib.util;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
