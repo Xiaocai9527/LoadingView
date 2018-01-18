@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".DialogTipActivity"/>
         <activity android:name=".ToastTipActivity"/>
+        <activity android:name=".HomeActivity"/>
     </application>
 
 </manifest>

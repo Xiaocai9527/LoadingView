@@ -142,10 +142,33 @@
         android:layout_height="wrap_content"
         android:text="loadtv时间"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591"
-        app:layout_constraintHorizontal_bias="0.942"/>
+        app:layout_constraintVertical_bias="0.591"/>
+
+    <Button
+        android:id="@+id/dis_listener_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弹窗消失监听"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742"/>
+
+    <Button
+        android:id="@+id/tip_time_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tip提示时间"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742"/>
 
 </android.support.constraint.ConstraintLayout>

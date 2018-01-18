@@ -75,6 +75,22 @@ public class TipLoadDialog
     private int currentType;
     private int dismissTime = 1000;
     private View view;
+    /**
+     * 消失监听
+     */
+    private DismissListener listener;
+
+
+    public interface DismissListener
+    {
+        void onDimissListener();
+    }
+
+    public TipLoadDialog setDismissListener(DismissListener dismissListener)
+    {
+        this.listener = dismissListener;
+        return this;
+    }
 
     public TipLoadDialog(Context context)
     {
@@ -382,6 +398,18 @@ public class TipLoadDialog
     }
 
     /**
+     * 设置tip提示框时间
+     *
+     * @param duration 毫秒
+     * @return
+     */
+    public TipLoadDialog setTipTime(int duration)
+    {
+        this.dismissTime = duration;
+        return this;
+    }
+
+    /**
      * 配置是否能返回键取消加载框
      *
      * @param flag
@@ -473,6 +501,10 @@ public class TipLoadDialog
         if (loadView.getVisibility() == View.VISIBLE)
         {
             loadView.stopLoading();
+        }
+        if (listener != null)
+        {
+            listener.onDimissListener();
         }
     }
 

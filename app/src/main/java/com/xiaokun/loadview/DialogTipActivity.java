@@ -1,6 +1,7 @@
 package com.xiaokun.loadview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,6 +42,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
     private Button mMsgColorTip;
     private Button mLvColorTip;
     private Button mLvTimeTip;
+    private Button mDisListenerTip;
+    private Button mTipTimeTip;
 
 
     @Override
@@ -68,6 +71,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mMsgColorTip = (Button) findViewById(R.id.msg_color_tip);
         mLvColorTip = (Button) findViewById(R.id.lv_color_tip);
         mLvTimeTip = (Button) findViewById(R.id.lv_time_tip);
+        mDisListenerTip = (Button) findViewById(R.id.dis_listener_tip);
+        mTipTimeTip = (Button) findViewById(R.id.tip_time_tip);
     }
 
     private void initListener()
@@ -84,6 +89,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mMsgColorTip.setOnClickListener(this);
         mLvColorTip.setOnClickListener(this);
         mLvTimeTip.setOnClickListener(this);
+        mDisListenerTip.setOnClickListener(this);
+        mTipTimeTip.setOnClickListener(this);
     }
 
     @Override
@@ -160,6 +167,28 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
                         .setLoadingTextSize(15)
                         .setLoadingTime(10000)
                         .setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING)
+                        .show();
+                break;
+            case R.id.dis_listener_tip:
+                //弹窗消失事件监听
+                tipLoadDialog.setNoShadowTheme()
+                        .setMsgAndType("登录成功", TipLoadDialog.ICON_TYPE_SUCCESS)
+                        .setDismissListener(new TipLoadDialog.DismissListener()
+                        {
+                            @Override
+                            public void onDimissListener()
+                            {
+                                startActivity(new Intent(DialogTipActivity.this, HomeActivity.class));
+                                //然后可以finish掉当前登录页
+                            }
+                        })
+                        .show();
+                break;
+            case R.id.tip_time_tip:
+                //设置tip提示弹框时间
+                tipLoadDialog.setNoShadowTheme()
+                        .setMsgAndType("停留2秒消失", TipLoadDialog.ICON_TYPE_SUCCESS)
+                        .setTipTime(2000)
                         .show();
                 break;
             default:
