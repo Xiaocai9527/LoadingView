@@ -162,6 +162,54 @@ tipLoadDialog.setNoShadowTheme()
 
 
 
+### 展示10：弹窗消失事件监听
+
+![](screenshots/dis_listener.gif)
+
+
+
+**代码：**(比如用在登陆成功跳转页面时候调用)
+
+```
+//弹窗消失事件监听
+tipLoadDialog.setNoShadowTheme()
+        .setMsgAndType("登录成功", TipLoadDialog.ICON_TYPE_SUCCESS)
+        .setDismissListener(new TipLoadDialog.DismissListener()
+        {
+            @Override
+            public void onDimissListener()
+            {
+                startActivity(new Intent(DialogTipActivity.this, HomeActivity.class));
+                //然后可以finish掉当前登录页
+            }
+        })
+        .show();
+```
+
+
+
+### 展示11：设置tip弹窗时间
+
+![](screenshots/set_time.gif)
+
+
+
+**代码：**
+
+```
+//设置tip提示弹框时间
+tipLoadDialog.setNoShadowTheme()
+        .setMsgAndType("停留2秒消失", TipLoadDialog.ICON_TYPE_SUCCESS)
+        .setTipTime(2000)
+        .show();
+```
+
+
+
+
+
+
+
 ### 两种实现模式：
 
 一、采用Dialog模式实现：
