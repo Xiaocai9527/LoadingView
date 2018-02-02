@@ -32,6 +32,14 @@
         android:textColor="#ffffff"
         android:textSize="15sp"/>
 
+    <com.xiaokun.dialogtiplib.dialog_tip.FadeInTextView
+        android:id="@+id/loading_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"/>
+
     <ImageView
         android:id="@+id/tip_img"
         android:layout_width="wrap_content"

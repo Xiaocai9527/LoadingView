@@ -44,6 +44,7 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
     private Button mLvTimeTip;
     private Button mDisListenerTip;
     private Button mTipTimeTip;
+    private Button mLoading2;
 
 
     @Override
@@ -73,6 +74,7 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mLvTimeTip = (Button) findViewById(R.id.lv_time_tip);
         mDisListenerTip = (Button) findViewById(R.id.dis_listener_tip);
         mTipTimeTip = (Button) findViewById(R.id.tip_time_tip);
+        mLoading2 = (Button) findViewById(R.id.loading2);
     }
 
     private void initListener()
@@ -91,6 +93,7 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mLvTimeTip.setOnClickListener(this);
         mDisListenerTip.setOnClickListener(this);
         mTipTimeTip.setOnClickListener(this);
+        mLoading2.setOnClickListener(this);
     }
 
     @Override
@@ -189,6 +192,12 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
                 tipLoadDialog.setNoShadowTheme()
                         .setMsgAndType("停留2秒消失", TipLoadDialog.ICON_TYPE_SUCCESS)
                         .setTipTime(2000)
+                        .show();
+                break;
+            case R.id.loading2:
+                //设置另一种loading文字动画,注意不要加后缀...
+                tipLoadDialog.setNoShadowTheme()
+                        .setMsgAndType("加载中", TipLoadDialog.ICON_TYPE_LOADING2)
                         .show();
                 break;
             default:

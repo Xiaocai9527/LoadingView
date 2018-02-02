@@ -28,7 +28,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034"/>
+        app:layout_constraintVertical_bias="0.218"
+        app:layout_constraintHorizontal_bias="0.054"/>
 
     <Button
         android:id="@+id/fail_tip"
@@ -48,11 +49,11 @@
         android:layout_height="wrap_content"
         android:text="信息提示"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218"/>
+        app:layout_constraintVertical_bias="0.742"/>
 
     <Button
         android:id="@+id/toast_tip"
@@ -170,5 +171,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.742"/>
+
+    <Button
+        android:id="@+id/loading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="loading2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034"
+        app:layout_constraintHorizontal_bias="0.491"/>
 
 </android.support.constraint.ConstraintLayout>

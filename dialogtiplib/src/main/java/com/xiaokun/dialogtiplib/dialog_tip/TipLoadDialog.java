@@ -38,6 +38,12 @@ public class TipLoadDialog
      * Loading状态
      */
     public static final int ICON_TYPE_LOADING = 1;
+
+    /**
+     * loading状态2
+     */
+    public static final int ICON_TYPE_LOADING2 = 5;
+
     /**
      * 显示成功状态
      */
@@ -66,11 +72,12 @@ public class TipLoadDialog
 
     private static Handler sHandler = new Handler(Looper.getMainLooper());
     private MyDialog dialog;
-    private final GraduallyTextView loadView;
+    private final GraduallyTextView loadText;
     private final ImageView img;
     private final TextView msg;
     private final ProgressBar progressBar;
     private final LinearLayout layout;
+    private FadeInTextView loadText2;
     private Context mContext;
     private int currentType;
     private int dismissTime = 1000;
@@ -106,42 +113,58 @@ public class TipLoadDialog
         img = (ImageView) view.findViewById(R.id.tip_img);
         msg = (TextView) view.findViewById(R.id.tip_text);
         progressBar = (ProgressBar) view.findViewById(R.id.lv_circularring);
-        loadView = (GraduallyTextView) view.findViewById(R.id.loading_text);
-        loadView.setText(info);
-        msg.setText(info);
+        loadText = (GraduallyTextView) view.findViewById(R.id.loading_text);
+        loadText2 = (FadeInTextView) view.findViewById(R.id.loading_text2);
+        changeUi(info, type);
+        setNoShadowTheme();
+    }
 
+    private void changeUi(String info, int type)
+    {
+        loadText.setText(info);
+        loadText2.setTextString(info, "....");
+        msg.setText(info);
 
         if (type == ICON_TYPE_SUCCESS)
         {
-            img.setImageDrawable(ContextCompat.getDrawable(context, SUCCESS_ICON));
+            img.setImageDrawable(ContextCompat.getDrawable(mContext, SUCCESS_ICON));
             img.setVisibility(View.VISIBLE);
             msg.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
+            loadText.setVisibility(View.GONE);
+            loadText2.setVisibility(View.GONE);
         } else if (type == ICON_TYPE_FAIL)
         {
-            img.setImageDrawable(ContextCompat.getDrawable(context, ERROR_ICON));
+            img.setImageDrawable(ContextCompat.getDrawable(mContext, ERROR_ICON));
             img.setVisibility(View.VISIBLE);
             msg.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
+            loadText.setVisibility(View.GONE);
+            loadText2.setVisibility(View.GONE);
         } else if (type == ICON_TYPE_INFO)
         {
-            img.setImageDrawable(ContextCompat.getDrawable(context, INFO_ICON));
+            img.setImageDrawable(ContextCompat.getDrawable(mContext, INFO_ICON));
             img.setVisibility(View.VISIBLE);
             msg.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
+            loadText.setVisibility(View.GONE);
+            loadText2.setVisibility(View.GONE);
         } else if (type == ICON_TYPE_LOADING)
         {
             img.setVisibility(View.GONE);
             msg.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
-            loadView.setVisibility(View.VISIBLE);
+            loadText.setVisibility(View.VISIBLE);
+            loadText2.setVisibility(View.GONE);
+        } else if (type == ICON_TYPE_LOADING2)
+        {
+            img.setVisibility(View.GONE);
+            msg.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+            loadText.setVisibility(View.GONE);
+            loadText2.setVisibility(View.VISIBLE);
         }
-        setNoShadowTheme();
     }
-
 
     /**
      * 设置成功图标
@@ -191,36 +214,8 @@ public class TipLoadDialog
     public TipLoadDialog setMsgAndType(String info, int type)
     {
         this.currentType = type;
-        msg.setText(info);
-        loadView.setText(info);
-        if (type == ICON_TYPE_SUCCESS)
-        {
-            img.setImageDrawable(ContextCompat.getDrawable(mContext, SUCCESS_ICON));
-            img.setVisibility(View.VISIBLE);
-            msg.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
-        } else if (type == ICON_TYPE_FAIL)
-        {
-            img.setImageDrawable(ContextCompat.getDrawable(mContext, ERROR_ICON));
-            img.setVisibility(View.VISIBLE);
-            msg.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
-        } else if (type == ICON_TYPE_INFO)
-        {
-            img.setImageDrawable(ContextCompat.getDrawable(mContext, INFO_ICON));
-            img.setVisibility(View.VISIBLE);
-            msg.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-            loadView.setVisibility(View.GONE);
-        } else if (type == ICON_TYPE_LOADING)
-        {
-            img.setVisibility(View.GONE);
-            msg.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
-            loadView.setVisibility(View.VISIBLE);
-        }
+        changeUi(info, type);
+
         if (type != ICON_TYPE_LOADING)
         {
             img.post(new Runnable()
@@ -232,8 +227,10 @@ public class TipLoadDialog
                      * 88dp = width - paddingLeft -paddingRight ;
                      * 1.icon的宽度<88dp,则设置msg的最大宽度为88dp
                      * 2.icon的宽度>88dp,则设置msg的最大宽度为icon宽度
+                     *
+                     * 88太小  设置为200
                      */
-                    int maxWidth = DimenUtils.dpToPxInt(88);
+                    int maxWidth = DimenUtils.dpToPxInt(200);
                     int width = img.getWidth();
                     if (maxWidth > width)
                     {
@@ -369,7 +366,7 @@ public class TipLoadDialog
      */
     public TipLoadDialog setLoadingTextColor(int color)
     {
-        loadView.setTextColor(color);
+        loadText.setTextColor(color);
         return this;
     }
 
@@ -381,7 +378,7 @@ public class TipLoadDialog
      */
     public TipLoadDialog setLoadingTextSize(int sp)
     {
-        loadView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sp);
+        loadText.setTextSize(TypedValue.COMPLEX_UNIT_SP, sp);
         return this;
     }
 
@@ -393,7 +390,7 @@ public class TipLoadDialog
      */
     public TipLoadDialog setLoadingTime(int duration)
     {
-        loadView.setDuration(duration);
+        loadText.setDuration(duration);
         return this;
     }
 
@@ -445,14 +442,18 @@ public class TipLoadDialog
     public void show()
     {
         dialog.show();
-        if (loadView.getVisibility() == View.VISIBLE)
+        if (loadText.getVisibility() == View.VISIBLE)
         {
-            loadView.startLoading();
+            loadText.startLoading();
+        }
+        if (loadText2.getVisibility() == View.VISIBLE)
+        {
+            loadText2.startFadeInAnimation();
         }
         //移除所有的message和callback,
         // 防止返回键dismiss后,callback没移除
         sHandler.removeCallbacksAndMessages(null);
-        if (this.currentType != ICON_TYPE_LOADING)
+        if (this.currentType != ICON_TYPE_LOADING && this.currentType != ICON_TYPE_LOADING2)
         {
             sHandler.postDelayed(new Runnable()
             {
@@ -472,9 +473,13 @@ public class TipLoadDialog
     {
         this.dismissTime = duration;
         dialog.show();
-        if (loadView.getVisibility() == View.VISIBLE)
+        if (loadText.getVisibility() == View.VISIBLE)
         {
-            loadView.startLoading();
+            loadText.startLoading();
+        }
+        if (loadText2.getVisibility() == View.VISIBLE)
+        {
+            loadText2.startFadeInAnimation();
         }
         //移除所有的message和callback,
         // 防止返回键dismiss后,callback没移除
@@ -498,9 +503,13 @@ public class TipLoadDialog
     public void dismiss()
     {
         dialog.dismiss();
-        if (loadView.getVisibility() == View.VISIBLE)
+        if (loadText.getVisibility() == View.VISIBLE)
         {
-            loadView.stopLoading();
+            loadText.stopLoading();
+        }
+        if (loadText2.getVisibility() == View.VISIBLE)
+        {
+            loadText2.stopFadeInAnimation();
         }
         if (listener != null)
         {
@@ -521,11 +530,15 @@ public class TipLoadDialog
         {
             if (keyCode == KeyEvent.KEYCODE_BACK)
             {
-                //拦截back键
+                //拦截back键,防止loadview的内存泄漏
                 dialog.dismiss();
-                if (loadView.getVisibility() == View.VISIBLE)
+                if (loadText.getVisibility() == View.VISIBLE)
                 {
-                    loadView.stopLoading();
+                    loadText.stopLoading();
+                }
+                if (loadText2.getVisibility() == View.VISIBLE)
+                {
+                    loadText2.stopFadeInAnimation();
                 }
             }
             return super.onKeyDown(keyCode, event);

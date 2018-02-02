@@ -23,7 +23,24 @@ tipLoadDialog.setMsgAndType(LOADING_玩命, TipLoadDialog.ICON_TYPE_LOADING).sho
 
 
 
-### **展示2：tip提示框 1s后自动消失**
+### 展示2：耗时加载框,样式2
+
+![](screenshots/load2.gif)
+
+
+
+**代码：**
+
+```
+//设置另一种loading文字动画,注意不要加后缀...
+tipLoadDialog.setNoShadowTheme()
+        .setMsgAndType("加载中", TipLoadDialog.ICON_TYPE_LOADING2)
+        .show();
+```
+
+
+
+### **展示3：tip提示框 1s后自动消失**
 
 ![](screenshots/tip.gif)
 
@@ -38,7 +55,7 @@ tipLoadDialog.setNoShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_S
 
 
 
-### 展示3：阴影主题
+### 展示4：阴影主题
 
 ![](screenshots/shadow.gif)
 
@@ -53,7 +70,7 @@ tipLoadDialog.setShadowTheme().setMsgAndType(sucTip, TipLoadDialog.ICON_TYPE_SUC
 
 
 
-### 展示4：设置圆角
+### 展示5：设置圆角
 
 ![](screenshots/corner.gif)
 
@@ -71,7 +88,7 @@ tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_corner)
 
 
 
-### 展示5：设置icon
+### 展示6：设置icon
 
 ![](screenshots/icon.gif)
 
@@ -86,7 +103,7 @@ tipLoadDialog.setSuccessIcon(R.mipmap.custom_tip)
 
 
 
-### 展示6：设置背景颜色
+### 展示7：设置背景颜色
 
 ![](screenshots/new_bg_color.gif)
 
@@ -102,7 +119,7 @@ tipLoadDialog.setBackground(R.drawable.custom_dialog_bg_color)
 
 
 
-### 展示7：设置提示文字颜色和大小
+### 展示8：设置提示文字颜色和大小
 
 ![](screenshots/msg_color.gif)
 
@@ -121,7 +138,7 @@ tipLoadDialog.setNoShadowTheme()
 
 
 
-### 展示8：设置加载框文字颜色和大小，以及progressbar颜色
+### 展示9：设置加载框文字颜色和大小，以及progressbar颜色
 
 ![](screenshots/load_tv_color.gif)
 
@@ -141,7 +158,7 @@ tipLoadDialog.setNoShadowTheme()
 
 
 
-### 展示9：设置加载一次文字动画时间
+### 展示10：设置加载一次文字动画时间
 
 ![](screenshots/load_time.gif)
 
@@ -162,7 +179,7 @@ tipLoadDialog.setNoShadowTheme()
 
 
 
-### 展示10：弹窗消失事件监听
+### 展示11：弹窗消失事件监听
 
 ![](screenshots/dis_listener.gif)
 
@@ -188,7 +205,7 @@ tipLoadDialog.setNoShadowTheme()
 
 
 
-### 展示11：设置tip弹窗时间
+### 展示12：设置tip弹窗时间
 
 ![](screenshots/set_time.gif)
 
