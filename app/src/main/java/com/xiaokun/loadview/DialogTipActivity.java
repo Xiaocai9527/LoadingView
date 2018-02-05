@@ -45,6 +45,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
     private Button mDisListenerTip;
     private Button mTipTimeTip;
     private Button mLoading2;
+    private Button mLogin1;
+    private Button mLogin2;
 
 
     @Override
@@ -75,6 +77,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mDisListenerTip = (Button) findViewById(R.id.dis_listener_tip);
         mTipTimeTip = (Button) findViewById(R.id.tip_time_tip);
         mLoading2 = (Button) findViewById(R.id.loading2);
+        mLogin1 = (Button) findViewById(R.id.login1);
+        mLogin2 = (Button) findViewById(R.id.login2);
     }
 
     private void initListener()
@@ -94,6 +98,8 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
         mDisListenerTip.setOnClickListener(this);
         mTipTimeTip.setOnClickListener(this);
         mLoading2.setOnClickListener(this);
+        mLogin1.setOnClickListener(this);
+        mLogin2.setOnClickListener(this);
     }
 
     @Override
@@ -200,10 +206,53 @@ public class DialogTipActivity extends AppCompatActivity implements View.OnClick
                         .setMsgAndType("加载中", TipLoadDialog.ICON_TYPE_LOADING2)
                         .show();
                 break;
+            case R.id.login1:
+                tipLoadDialog.setMsgAndType("登录中...", TipLoadDialog.ICON_TYPE_LOADING).show();
+                startThread();
+                break;
+            case R.id.login2:
+                tipLoadDialog.setNoShadowTheme().setMsgAndType("登录中", TipLoadDialog.ICON_TYPE_LOADING2).show();
+                startThread();
+                break;
             default:
 
                 break;
         }
+    }
+
+    private void startThread()
+    {
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        tipLoadDialog.setMsgAndType("登录成功", TipLoadDialog.ICON_TYPE_SUCCESS)
+                                .setDismissListener(new TipLoadDialog.DismissListener()
+                                {
+                                    @Override
+                                    public void onDimissListener()
+                                    {
+                                        startActivity(new Intent(DialogTipActivity.this, HomeActivity.class));
+                                        //然后可以finish掉当前登录页
+                                    }
+                                }).show();
+                    }
+                });
+            }
+        }).start();
     }
 
     /**

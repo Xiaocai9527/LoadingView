@@ -122,7 +122,7 @@ public class TipLoadDialog
     private void changeUi(String info, int type)
     {
         loadText.setText(info);
-        loadText2.setTextString(info, "....");
+        loadText2.setTextString(info + ".", "...");
         msg.setText(info);
 
         if (type == ICON_TYPE_SUCCESS)
@@ -455,37 +455,14 @@ public class TipLoadDialog
         sHandler.removeCallbacksAndMessages(null);
         if (this.currentType != ICON_TYPE_LOADING && this.currentType != ICON_TYPE_LOADING2)
         {
-            sHandler.postDelayed(new Runnable()
+            if (loadText2.isLoading())
             {
-                @Override
-                public void run()
-                {
-                    dismiss();
-                }
-            }, dismissTime);
-        }
-    }
-
-    /**
-     * 显示,自定义时间
-     */
-    public void show(int duration)
-    {
-        this.dismissTime = duration;
-        dialog.show();
-        if (loadText.getVisibility() == View.VISIBLE)
-        {
-            loadText.startLoading();
-        }
-        if (loadText2.getVisibility() == View.VISIBLE)
-        {
-            loadText2.startFadeInAnimation();
-        }
-        //移除所有的message和callback,
-        // 防止返回键dismiss后,callback没移除
-        sHandler.removeCallbacksAndMessages(null);
-        if (this.currentType != ICON_TYPE_LOADING)
-        {
+                loadText2.stopFadeInAnimation();
+            }
+            if (loadText.isLoading())
+            {
+                loadText.stopLoading();
+            }
             sHandler.postDelayed(new Runnable()
             {
                 @Override
@@ -503,11 +480,11 @@ public class TipLoadDialog
     public void dismiss()
     {
         dialog.dismiss();
-        if (loadText.getVisibility() == View.VISIBLE)
+        if (loadText.isLoading())
         {
             loadText.stopLoading();
         }
-        if (loadText2.getVisibility() == View.VISIBLE)
+        if (loadText2.isLoading())
         {
             loadText2.stopFadeInAnimation();
         }
@@ -532,11 +509,11 @@ public class TipLoadDialog
             {
                 //拦截back键,防止loadview的内存泄漏
                 dialog.dismiss();
-                if (loadText.getVisibility() == View.VISIBLE)
+                if (loadText.isLoading())
                 {
                     loadText.stopLoading();
                 }
-                if (loadText2.getVisibility() == View.VISIBLE)
+                if (loadText2.isLoading())
                 {
                     loadText2.stopFadeInAnimation();
                 }

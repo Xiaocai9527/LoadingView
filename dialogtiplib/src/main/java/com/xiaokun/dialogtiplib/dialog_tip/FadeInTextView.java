@@ -43,8 +43,9 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
     /**
      * 每个字出现的时间
      */
-    private long duration = 500;
+    private long duration = 700;
     private ValueAnimator textAnimation;
+    private String contentStr;
 
     private TextAnimationListener textAnimationListener;
 
@@ -87,10 +88,14 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
      */
     private void initAnimation()
     {
+        if (textAnimation != null)
+        {
+            return;
+        }
         //从0到textCount - 1  是设置从第一个字到最后一个字的变化因子
         textAnimation = ValueAnimator.ofInt(0, textCount);
         //执行总时间就是每个字的时间乘以字数
-        textAnimation.setDuration(textCount * duration);
+        textAnimation.setDuration((textCount - 1) * duration);
         //匀速显示文字
         textAnimation.setInterpolator(new LinearInterpolator());
         textAnimation.setRepeatCount(ValueAnimator.INFINITE);
@@ -103,25 +108,26 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
                 //过滤去重，保证每个字只重绘一次
                 if (currentIndex != index)
                 {
-                    //直接用这个貌似更好点
-                    append(arr[index]);
+                    stringBuffer.append(arr[index]);
+                    //重复动画使用append会造成内存泄漏
+                    // append(arr[index]);
 
                     currentIndex = index;
                     //所有文字都显示完成之后进度回调结束动画
                     if (currentIndex == (textCount - 1))
                     {
-                        setText(contentStr);
+                        stringBuffer.setLength(0);
                         if (textAnimationListener != null)
                         {
                             textAnimationListener.animationFinish();
                         }
                     }
+                    setText(contentStr + stringBuffer.toString());
                 }
             }
         });
     }
 
-    private String contentStr;
 
     /**
      * 设置逐渐显示的字符串
@@ -157,6 +163,8 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
         return this;
     }
 
+    private boolean isLoading = false;
+
     /**
      * 开启动画
      *
@@ -166,11 +174,17 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
     {
         if (textAnimation != null)
         {
+            isLoading = true;
             stringBuffer.setLength(0);
             currentIndex = -1;
             textAnimation.start();
         }
         return this;
+    }
+
+    public boolean isLoading()
+    {
+        return isLoading;
     }
 
     /**
@@ -182,6 +196,8 @@ public class FadeInTextView extends android.support.v7.widget.AppCompatTextView
     {
         if (textAnimation != null)
         {
+            isLoading = false;
+            stringBuffer.setLength(0);
             textAnimation.cancel();
         }
         return this;

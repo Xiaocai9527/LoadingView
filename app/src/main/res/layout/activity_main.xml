@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:text="成功提示"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218"
-        app:layout_constraintHorizontal_bias="0.054"/>
+        app:layout_constraintVertical_bias="0.168"/>
 
     <Button
         android:id="@+id/fail_tip"
@@ -53,18 +53,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742"/>
+        app:layout_constraintVertical_bias="0.604"/>
 
     <Button
         android:id="@+id/toast_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="toast提示"
+        android:text="阴影主题"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218"/>
+        app:layout_constraintVertical_bias="0.168"/>
 
 
     <Button
@@ -77,7 +77,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218"/>
+        app:layout_constraintVertical_bias="0.168"/>
 
     <Button
         android:id="@+id/corner_tip"
@@ -89,7 +89,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397"/>
+        app:layout_constraintVertical_bias="0.313"/>
 
     <Button
         android:id="@+id/icon_tip"
@@ -100,7 +100,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397"/>
+        app:layout_constraintVertical_bias="0.313"/>
 
     <Button
         android:id="@+id/bg_tip"
@@ -108,11 +108,11 @@
         android:layout_height="wrap_content"
         android:text="更改bg颜色"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397"/>
+        app:layout_constraintVertical_bias="0.313"/>
 
     <Button
         android:id="@+id/msg_color_tip"
@@ -120,11 +120,11 @@
         android:layout_height="wrap_content"
         android:text="msg颜色"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591"/>
+        app:layout_constraintVertical_bias="0.453"/>
 
     <Button
         android:id="@+id/lv_color_tip"
@@ -135,7 +135,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591"/>
+        app:layout_constraintVertical_bias="0.453"/>
 
     <Button
         android:id="@+id/lv_time_tip"
@@ -147,7 +147,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591"/>
+        app:layout_constraintVertical_bias="0.453"/>
 
     <Button
         android:id="@+id/dis_listener_tip"
@@ -159,7 +159,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742"/>
+        app:layout_constraintVertical_bias="0.604"/>
 
     <Button
         android:id="@+id/tip_time_tip"
@@ -170,7 +170,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742"/>
+        app:layout_constraintVertical_bias="0.604"/>
 
     <Button
         android:id="@+id/loading2"
@@ -178,10 +178,33 @@
         android:layout_height="wrap_content"
         android:text="loading2"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034"
-        app:layout_constraintHorizontal_bias="0.491"/>
+        app:layout_constraintVertical_bias="0.034"/>
+
+    <Button
+        android:id="@+id/login1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742"/>
+
+    <Button
+        android:id="@+id/login2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742"/>
 
 </android.support.constraint.ConstraintLayout>

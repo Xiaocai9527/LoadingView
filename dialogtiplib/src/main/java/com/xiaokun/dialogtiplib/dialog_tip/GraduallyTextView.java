@@ -132,14 +132,22 @@ public class GraduallyTextView extends AppCompatEditText
         sigleDuration = 100f / textLength;
     }
 
+    public boolean isLoading()
+    {
+        return isLoading;
+    }
+
     //停止loading的方法
     public void stopLoading()
     {
         isLoading = false;
-        valueAnimator.end();
-        valueAnimator.cancel();
         isStop = true;
-        setText(text);
+        if (valueAnimator != null)
+        {
+            valueAnimator.end();
+            valueAnimator.cancel();
+            setText(text);
+        }
     }
 
     //设置时长
